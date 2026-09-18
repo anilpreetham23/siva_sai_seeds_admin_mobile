@@ -39,11 +39,14 @@ export default function ManagerMobileDashboard({ data, user }) {
     weekday: 'long', day: 'numeric', month: 'long'
   });
 
-  const revenueMTD = data?.revenueMTD || 124800;
-  const pendingOrders = data?.pendingPayments || 6;
-  const activeCrops = data?.activeCrops || 6;
-  const totalFarmers = data?.totalFarmers || 4;
-  const warehouseInv = data?.warehouseInv ? (data.warehouseInv / 100).toFixed(1) : '15.8';
+  const revenueMTD = data?.revenueMTD ?? 0;
+  const pendingOrders = data?.pendingPayments ?? 0;
+  const activeCrops = data?.activeCrops ?? 0;
+  const totalFarmers = data?.totalFarmers ?? 0;
+  const warehouseInv = data?.warehouseInv ? (data.warehouseInv / 100).toFixed(1) : '0';
+  const bookingsCount = data?.todayBookingsCount ?? 0;
+  const visitsCount = data?.todayVisitsCount ?? 0;
+  const grainSalesCount = data?.todayGrainSalesCount ?? 0;
 
   return (
     <div className="flex flex-col gap-5 pb-6 font-manrope">
@@ -73,7 +76,7 @@ export default function ManagerMobileDashboard({ data, user }) {
             </span>
           </div>
           <div className="text-[11.5px] text-white/80 mt-0.5 truncate font-medium">
-            {pendingOrders} seed orders · 4 grain sales · 3 farm visits
+            {pendingOrders} seed orders · {grainSalesCount} grain sales · {visitsCount} farm visits
           </div>
         </div>
       </div>
@@ -86,7 +89,7 @@ export default function ManagerMobileDashboard({ data, user }) {
           iconColor="#0369A1"
           value={pendingOrders}
           label="Pending seed orders"
-          delta="▲ 2 new today"
+          delta="Real-time status"
           deltaPositive={true}
           onClick={() => navigate(`${basePath}/seed-purchases`)}
         />
@@ -94,9 +97,9 @@ export default function ManagerMobileDashboard({ data, user }) {
           icon={<Calendar size={18} />}
           iconBg="#F0F8EC"
           iconColor="var(--canopy-deep)"
-          value="4"
+          value={bookingsCount}
           label="Bookings today"
-          delta="6 slots left"
+          delta="Active slots"
           deltaPositive={true}
           onClick={() => navigate(`${basePath}/booking-slots`)}
         />
@@ -104,9 +107,9 @@ export default function ManagerMobileDashboard({ data, user }) {
           icon={<MapPin size={18} />}
           iconBg="#FDF5EC"
           iconColor="var(--amber)"
-          value="3"
+          value={visitsCount}
           label="Farm visits today"
-          delta="1 in progress"
+          delta="Scheduled"
           deltaPositive={true}
           onClick={() => navigate(`${basePath}/visits`)}
         />
@@ -114,9 +117,9 @@ export default function ManagerMobileDashboard({ data, user }) {
           icon={<Wheat size={18} />}
           iconBg="#F4F2F7"
           iconColor="#6B4C9A"
-          value="4"
+          value={grainSalesCount}
           label="Grain sales today"
-          delta="▲ 2 vs yesterday"
+          delta="Procured"
           deltaPositive={true}
           onClick={() => navigate(`${basePath}/grain-sales`)}
         />

@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 export default function MobileWelcomePage() {
   const navigate = useNavigate();
-  const { login, user } = useAuth();
+  const { login, logout, user } = useAuth();
 
   const [step, setStep] = useState('splash'); // 'splash' | 'login'
   const [identifier, setIdentifier] = useState('');
@@ -19,14 +19,15 @@ export default function MobileWelcomePage() {
   useEffect(() => {
     if (user) {
       if (user.role === 'farmer') {
-        toast.error('This application is restricted to Managers and Admins. Please use the Farmer Mobile App.');
+        toast.error('This mobile app is restricted to Managers and Admins. Please use the separate Farmer Mobile App.');
+        logout();
       } else if (user.role === 'manager') {
         navigate('/manager/dashboard', { replace: true });
       } else if (user.role === 'admin' || user.role === 'super_admin') {
         navigate('/admin/dashboard', { replace: true });
       }
     }
-  }, [user, navigate]);
+  }, [user, navigate, logout]);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +49,7 @@ export default function MobileWelcomePage() {
 
       if (userRole === 'farmer') {
         toast.error('This mobile app is restricted to Managers and Admins. Please use the separate Farmer Mobile App.');
+        await logout();
         setLoading(false);
         return;
       }

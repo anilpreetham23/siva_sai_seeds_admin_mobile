@@ -18,11 +18,19 @@ const HowItWorksPage = lazy(() => import('../../pages/public/HowItWorksPage'));
 const FeaturesPage = lazy(() => import('../../pages/public/FeaturesPage'));
 
 function HomeRoute() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   if (user) {
-    if (user.role === 'farmer') return <Navigate to="/farmer" replace />;
-    if (user.role === 'manager' || user.role === 'super_admin') return <Navigate to="/manager/dashboard" replace />;
+    if (user.role === 'farmer') {
+      logout();
+      return <MobileWelcomePage />;
+    }
+    if (user.role === 'admin' || user.role === 'super_admin') {
+      return <Navigate to="/admin/dashboard" replace />;
+    }
+    if (user.role === 'manager') {
+      return <Navigate to="/manager/dashboard" replace />;
+    }
   }
 
   // On native Android/iOS APK: show the mobile welcome/login screen (NOT the web landing page)
@@ -86,7 +94,7 @@ export default function AppRouter() {
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/get-started" element={<GetStarted />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<MobileWelcomePage />} />
         <Route path="/register" element={<Navigate to="/get-started" replace />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
@@ -124,7 +132,7 @@ export default function AppRouter() {
 
         {/* ===== SUPER ADMIN PORTAL (/admin) ===== */}
 
-        <Route path="/admin/dashboard" element={<ProtectedRoute allowedRoles={['super_admin']}><SuperAdminLayout /></ProtectedRoute>}>
+        <Route path="/admin/dashboard" element={<ProtectedRoute allowedRoles={['admin', 'super_admin']}><SuperAdminLayout /></ProtectedRoute>}>
           <Route index element={<SuperAdminDashboard />} />
           <Route path="managers" element={<ManageAdmins />} />
           <Route path="farmers" element={<AllFarmers />} />
