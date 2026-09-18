@@ -1,12 +1,12 @@
 import './index.css';
 import './index';
 import { useEffect } from 'react';
-import { BrowserRouter, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, useNavigate, useLocation } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 import AppRouter from './app/router/AppRouter';
 import ScrollToTop from './components/shared/ScrollToTop';
-import { initPlatform, registerBackButtonListener, registerDeepLinkListener } from './platform/index';
+import { initPlatform, registerBackButtonListener, registerDeepLinkListener, isNative } from './platform/index';
 import platformNetwork from './platform/network';
 import ErrorBoundary from './components/shared/ErrorBoundary';
 
@@ -52,8 +52,10 @@ function NativeBridge() {
 }
 
 export default function App() {
+  const RouterComponent = isNative ? HashRouter : BrowserRouter;
+
   return (
-    <BrowserRouter>
+    <RouterComponent>
       <NativeBridge />
       <AuthProvider>
         <ScrollToTop />
@@ -66,6 +68,6 @@ export default function App() {
           <AppRouter />
         </ErrorBoundary>
       </AuthProvider>
-    </BrowserRouter>
+    </RouterComponent>
   );
 }
