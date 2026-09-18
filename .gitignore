@@ -28,6 +28,7 @@ android/.gradle/
 android/local.properties
 android/captures/
 *.apk
+!release/*.apk
 *.aab
 *.keystore
 !debug.keystore

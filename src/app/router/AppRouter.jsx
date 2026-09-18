@@ -102,7 +102,7 @@ export default function AppRouter() {
 
         {/* ===== MANAGER PORTAL (/manager) ===== */}
 
-        <Route path="/manager/dashboard" element={<ProtectedRoute allowedRoles={['manager','super_admin']}><AdminLayout /></ProtectedRoute>}>
+        <Route path="/manager/dashboard" element={<ProtectedRoute allowedRoles={['manager', 'admin', 'super_admin']}><AdminLayout /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="farmers" element={<FarmersDirectory />} />
           <Route path="seeds" element={<SeedsInventory />} />

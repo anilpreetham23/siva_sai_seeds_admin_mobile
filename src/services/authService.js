@@ -133,34 +133,8 @@ export const authService = {
         requirePasswordChange: (profile?.first_login ?? dbUser?.first_login) === true
       };
     } catch (err) {
-      console.warn('[AuthService] Network or backend error, logging in with offline demo farmer account:', err.message);
-      const mockUser = {
-        id: 1,
-        uuid: 'a1111111-1111-1111-1111-111111111111',
-        name: 'Ramesh Kumar (Farmer)',
-        phone: identifier || '9123456780',
-        email: 'ramesh.farmer@srisivasaiseeds.com',
-        role: 'farmer',
-        status: 'active',
-        first_login: false
-      };
-      const mockFarmerProfile = {
-        id: 1,
-        app_user_id: 1,
-        name: 'Ramesh Kumar (Farmer)',
-        phone: identifier || '9123456780',
-        acres_of_land: 8.5,
-        crop_address: 'Kalluru Farm, Kurnool Dist, AP',
-        status: 'active'
-      };
-      await platformStorage.setItem('agro_token', 'mock_offline_token');
-      await platformStorage.setItem('agro_user', JSON.stringify(mockUser));
-      return {
-        token: 'mock_offline_token',
-        user: mockUser,
-        profile: mockFarmerProfile,
-        requirePasswordChange: false
-      };
+      console.error('[AuthService] Login error:', err.message);
+      throw new Error(err.message || 'Authentication failed. Please check your credentials.');
     }
   },
 

@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.srisivasai.seeds"
+    namespace = "com.srisivasai.seeds.admin"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.srisivasai.seeds"
+        applicationId "com.srisivasai.seeds.admin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

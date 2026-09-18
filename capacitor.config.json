@@ -1,6 +1,6 @@
 {
-  "appId": "com.srisivasai.seeds",
-  "appName": "Sri Siva Sai Seeds",
+  "appId": "com.srisivasai.seeds.admin",
+  "appName": "Sri Siva Sai Seeds Admin",
   "webDir": "dist",
   "server": {
     "androidScheme": "https",
