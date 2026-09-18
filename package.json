@@ -1,13 +1,15 @@
 {
-  "name": "agro-platform",
+  "name": "siva-sai-seeds",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:apk": "npm run build && npx cap sync android && cd android && gradlew.bat assembleRelease && cd .. && node scripts/copy-apk.js release",
+    "build:apk:debug": "npm run build && npx cap sync android && cd android && gradlew.bat assembleDebug && cd .. && node scripts/copy-apk.js debug"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",
