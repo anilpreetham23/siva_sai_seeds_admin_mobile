@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Siva Sai Seeds</string>
+    <string name="title_activity_main">Siva Sai Seeds</string>
+    <string name="package_name">com.srisivasai.seeds</string>
+    <string name="custom_url_scheme">com.srisivasai.seeds</string>
+</resources>

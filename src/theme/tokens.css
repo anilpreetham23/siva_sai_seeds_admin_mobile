@@ -1,0 +1,72 @@
+:root {
+  /* Surface & Base */
+  --bg: #F3F6EC;
+  --surface: #FFFFFF;
+  --surface-alt: #E9F0DD;
+  --line: #E1E8D8;
+
+  /* Primary Agro Green */
+  --forest: #15302A;
+  --forest-soft: #1F4438;
+  --canopy: #2E7D5B;
+  --canopy-deep: #1F5C42;
+  --canopy-light: #7BC79A;
+
+  /* Harvest Gold & Clay Accents */
+  --amber: #E39A3B;
+  --amber-soft: #F6E2BE;
+  --clay: #B4794C;
+  --clay-soft: #F1E1D0;
+  --alert: #D9704C;
+
+  /* Admin & Manager Navy */
+  --admin-navy: #1E3A5C;
+  --admin-navy-deep: #16293F;
+  --admin-navy-light: #4C7BAA;
+
+  /* Text & Status */
+  --text: #1C2A21;
+  --text-muted: #657268;
+  --text-faint: #8B9689;
+  --good: #28653F;
+  --warn: #8A5C15;
+  --bad: #A6431E;
+
+  /* Elevation & Geometry */
+  --shadow: 0 10px 30px -12px rgba(21, 48, 42, 0.22);
+  --shadow-sm: 0 4px 14px -6px rgba(21, 48, 42, 0.18);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+}
+
+/* Typography Utility Classes */
+.display {
+  font-family: 'Fraunces', serif !important;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+.font-manrope {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* Tactile micro-interactions */
+.tap-highlight {
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.16s ease;
+}
+.tap-highlight:active {
+  transform: scale(0.97);
+}
+
+/* Custom Scrollbar for sheets */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
